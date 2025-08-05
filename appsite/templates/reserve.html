@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Contactez-nous</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .contact-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 1rem;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <h1>Contactez-nous</h1>
+
+        {% if message_envoye %}
+            <div id="success-message" class="success-message">
+                ✅ Merci de nous avoir contacté. Nous reviendrons vers vous rapidement.
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        // Disparaître après 5 secondes
+        window.addEventListener('DOMContentLoaded', () => {
+            const message = document.getElementById('success-message');
+            if (message) {
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    message.style.transition = 'opacity 1s ease';
+                    setTimeout(() => {
+                        message.style.display = 'none';
+                    }, 1000);
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
+
+sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+{% extends 'base.html' %}
+{% block title %}Contact{% endblock %}
+
+{% block contact_section %}
+<section id="contact" class="contact section light-background">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row g-4 g-lg-5">
+      <div class="col-lg-7">
+        <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
+          <h3>Contactez-nous</h3>
+
+          {% if message_envoye %}
+            <div class="alert alert-success" id="success-message">
+              ✅ Merci de nous avoir contacté. Nous reviendrons vers vous rapidement.
+            </div>
+            <script>
+              setTimeout(() => {
+                const msg = document.getElementById('success-message');
+                if (msg) msg.style.display = 'none';
+              }, 5000);
+            </script>
+          {% endif %}
+
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+
+    <section id="clients" class="clients section">
+     
+      <div data-aos="fade-up" data-aos-delay="100">
+
+        <div class="clients-slider swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 6000,
+              "autoplay": {
+                "delay": 1,
+                "disableOnInteraction": false
+              },
+              "centeredSlides": true,
+              "slideToClickedSlide": true,
+              "slidesPerView": "auto",
+              "spaceBetween": 40,
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 20
+                },
+                "640": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 20
+                },
+                "992": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 30
+                },
+                "1200": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 40
+                }
+              }
+            }
+          </script>
+
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-7.webp' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-8.webp' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-9.webp' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-10.webp' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-11.jfif' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-7.jfif' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-8.jfif' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-9.webp' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-10.webp' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-11.jfif' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-12.jfif' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+            <div class="swiper-slide">
+              <div class="client-logo">
+                <img src="{% static 'assets/img/clients/clients-8.jfif' %}" class="img-fluid" alt="">
+              </div>
+            </div><!-- End Client Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+
+    2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+    {
+          "loop": false,
+          "speed": 10000,
+          "autoplay": {
+            "delay": 0,
+            "disableOnInteraction": false
+          },
+          "slidesPerView": "auto",
+          "spaceBetween": 30,
+          "freeMode": true,
+          "freeModeMomentum": false,
+          "grabCursor": false,
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 2,
+              "spaceBetween": 20
+            },
+            "640": {
+              "slidesPerView": 3,
+              "spaceBetween": 20
+            },
+            "992": {
+              "slidesPerView": 4,
+              "spaceBetween": 25
+            },
+            "1200": {
+              "slidesPerView": 6,
+              "spaceBetween": 30
+            }
+          }
+        }

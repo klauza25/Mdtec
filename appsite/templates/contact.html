@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block title %}Contact{% endblock %}
+
+{% block contact_section %}
+  <title>Contactez-nous</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Conteneur pour centrer */
+    .contact-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Hauteur écran complet */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .contact-container {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #28a745;
+      box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color:rgb(0, 102, 255);
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color:blue;
+      transform: scale(1.03);
+    }
+
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 14px;
+      border: 1px solid #c3e6cb;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    img {
+     filter: none !important;
+     opacity: 1 !important;
+      mix-blend-mode: normal !important;
+
+    }
+                                           
+</style>
+  </style>
+
+
+  <!-- ✅ SECTION CONTACT CENTRÉE -->
+  <section class="contact-section" id="contact">
+    <div class="contact-container">
+      <h1>Contactez-nous</h1>
+
+      {% if message_envoye %}
+        <div id="success-message" class="success-message">
+          ✅ Merci de nous avoir contacté. Nous reviendrons vers vous rapidement.
+        </div>
+
+        <script>
+         window.onload = function() {
+         document.getElementById('contact').scrollIntoView();
+          }
+        </script>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+
+
+  </div>
+  </section>
+
+  <script>
+    // Faire disparaître le message de succès après 5 secondes
+    window.addEventListener('DOMContentLoaded', () => {
+      const message = document.getElementById('success-message');
+      if (message) {
+        setTimeout(() => {
+          message.style.opacity = '0';
+          message.style.transition = 'opacity 1s ease';
+          setTimeout(() => {
+            message.style.display = 'none';
+          }, 1000);
+        }, 5000);
+      }
+    });
+  </script>
+
+{% endblock %}
